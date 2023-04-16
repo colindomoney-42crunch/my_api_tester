@@ -30,7 +30,10 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           
       - name: Build containers  
-        run: docker compose -f "docker-compose.yml" build
+        run: docker compose -f "docker-compose.yaml" build
 
       - name: Tag the container
-        run: echo docker images -a
+        run: docker tag pixi-app:latest colindomoney/pixi-app:latest
+        
+      - name: Push the container
+        run: docker push colindomoney/pixi-app
