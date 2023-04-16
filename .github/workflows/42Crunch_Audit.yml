@@ -1,5 +1,9 @@
 name: 42Crunch Audit
 
+permissions:
+  # required for all workflows
+  security-events: write
+
 # on: pull_request
 
 # follow standard Code Scanning triggers
