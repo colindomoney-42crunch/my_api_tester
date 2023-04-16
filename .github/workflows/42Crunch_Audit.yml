@@ -26,5 +26,5 @@ jobs:
           # Follow these steps to configure API_TOKEN https://docs.42crunch.com/latest/content/tasks/integrate_github_actions.htm
           api-token: ${{ secrets.API_TOKEN }}
           min-score: 50
-          platform-url: https://platform.42crunch.cloud
+          platform-url: https://platform.42crunch.com
           upload-to-code-scanning: true
