@@ -20,3 +20,4 @@ audit:
       discovery:
         search:
           - './OASFiles/**/*.json'
+          - '!./OASFiles/Reference/**'
