@@ -34,6 +34,7 @@ jobs:
           # Upload results to Github code scanning
           upload-to-code-scanning: false
           log-level: debug
+          min-score: 35
           json-report: audit-action-report-${{ github.run_id }}
       
       - name: save-audit-report
