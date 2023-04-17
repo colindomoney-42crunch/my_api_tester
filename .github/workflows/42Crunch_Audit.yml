@@ -32,7 +32,7 @@ jobs:
           platform-url: https://platform.42crunch.com
           default-collection-name: Code-Scanning-Import
           # Upload results to Github code scanning
-          upload-to-code-scanning: false
+          upload-to-code-scanning: true
           log-level: debug
           min-score: 35
           json-report: audit-action-report-${{ github.run_id }}
