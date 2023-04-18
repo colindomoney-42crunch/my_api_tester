@@ -626,7 +626,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ]
       }
     }
   },
