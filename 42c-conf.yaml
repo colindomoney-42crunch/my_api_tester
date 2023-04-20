@@ -16,7 +16,7 @@
 
 audit:
   branches:
-    main:
+    "**":
       discovery:
         search:
           - './OASFiles/**/*.json'
