@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Debugging
-        run: echo ./42c-conf.yaml
+        run: cat ./42c-conf.yaml
         
       - name: 42crunch-static-api-testing
         uses: 42crunch/api-security-audit-action@v3.5.0rc1
