@@ -624,7 +624,54 @@
         ],
         "responses": {
           "200": {
-            "description": "OK"
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": "1",
+                      "response": "Here is the reply"
+                    }
+                  },
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    },
+                    "response": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
+          },
+          "400": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "x-examples": {
+                    "Example 1": {
+                      "status": "1",
+                      "response": "Here is the reply"
+                    }
+                  },
+                  "properties": {
+                    "status": {
+                      "type": "integer"
+                    },
+                    "response": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {}
+              }
+            }
           }
         },
         "security": [

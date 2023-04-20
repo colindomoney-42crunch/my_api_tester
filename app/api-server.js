@@ -424,25 +424,29 @@ api.get('/api/admin/ping/:ipAddress', api_token_check, function (req, res) {
 		exec(command_to_run, (error, stdout, stderr) => {
 			if (error) {
 				console.log(`error: ${error.message}`);
-				res.status(400).send('Error:' + error.message)
+				// res.status(400).send('Error:' + error.message)
+				res.status(400).json({ "status": -1, "output": '>>> Failed to ping IP address: ' + error.message });
 				return;
 			}
 			if (stderr) {
 				console.log(`stderr: ${stderr}`);
-				res.status(400).send('Error:' + stderr.message)
+				// res.status(400).send('Error:' + stderr.message)
+				res.status(400).json({ "status": -2, "output": '>>> Failed to ping IP address: ' + stderr.message });
 				return;
 			}
 	
 			console.log(`stdout: ${stdout}`);
 	
-			var my_output = stdout;
-			res.status(200).send(my_output);
+			// res.set('Content-Type', 'text/plain');
+			// res.status(200).send(stdout);
+			res.status(200).json({ "status": 0, "output": stdout })
 		});
 
     }
     catch (err) {
         console.log('>>> Failed to convert IP address: ' + err);
-		res.status(400).send('>>> Failed to convert IP address:' + err)
+		// res.status(400).send('>>> Failed to convert IP address:' + err)
+		res.status(400).json({ "status": -3, "output": '>>> Failed to ping IP address: ' + err });
 		return;    
 	}
 });
