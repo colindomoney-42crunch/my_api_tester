@@ -602,37 +602,6 @@
         },
         "operationId": "deletePicture"
       }
-    },
-    "/admin/ping/{ipAddress}": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "schema": {
-              "type": "string",
-              "format": "ipv4",
-              "pattern": "^(?:25[0-5]|(?:2[0-4]|1[0-9]|[1-9]|)[0-9])(?:\\.(?:25[0-5]|(?:2[0-4]|1[0-9]|[1-9]|)[0-9])){3}$",
-              "minLength": 7,
-              "maxLength": 15,
-              "x-42c-format": "o:ipv4",
-              "example": "192.168.16.1"
-            },
-            "name": "ipAddress",
-            "in": "path",
-            "required": true
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        },
-        "security": [
-          {
-            "access-token": []
-          }
-        ]
-      }
     }
   },
   "components": {
