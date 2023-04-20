@@ -20,6 +20,9 @@ var jwt = require('jsonwebtoken');
 // for the shell exec goodness
 const { exec } = require("child_process");
 
+// for the IP address goodness
+var Address4 = require('ip-address').Address4;
+
 // Crypto to generate UUIDs
 const { v4: uuidv4 } = require('uuid');
 
@@ -414,24 +417,33 @@ api.get('/api/admin/all_users', api_token_check, function (req, res) {
 });
 
 api.get('/api/admin/ping/:ipAddress', api_token_check, function (req, res) {
-	// var command_to_run = "ping -c 5 " + req.params.ipAddress;
-	var command_to_run = "ping -c 1 " + req.params.ipAddress;
+	try {
+        var myIp = new Address4(req.params.ipAddress)
+		var command_to_run = "ping -c 1 " + myIp.address;
 
-	exec(command_to_run, (error, stdout, stderr) => {
-		if (error) {
-			console.log(`error: ${error.message}`);
-			return;
-		}
-		if (stderr) {
-			console.log(`stderr: ${stderr}`);
-			return;
-		}
+		exec(command_to_run, (error, stdout, stderr) => {
+			if (error) {
+				console.log(`error: ${error.message}`);
+				res.status(400).send('Error:' + error.message)
+				return;
+			}
+			if (stderr) {
+				console.log(`stderr: ${stderr}`);
+				res.status(400).send('Error:' + stderr.message)
+				return;
+			}
+	
+			console.log(`stdout: ${stdout}`);
+	
+			var my_output = stdout;
+			res.status(200).send(my_output);
+		});
 
-		console.log(`stdout: ${stdout}`);
-		var my_output = stdout;
-
-		// res.status(200).send("Did a ping, did a pong");
-		res.status(200).send(my_output);
-	});
+    }
+    catch (err) {
+        console.log('>>> Failed to convert IP address: ' + err);
+		res.status(400).send('>>> Failed to convert IP address:' + err)
+		return;    
+	}
 });
 

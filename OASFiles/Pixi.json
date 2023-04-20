@@ -155,7 +155,7 @@
               {
                 "x-42c-set-client-ip_0.1": {
                   "ip.header.name": "X-Forwarded-For",
-                  "ip.header.mandatory": true,
+                  "ip.header.mandatory": false,
                   "remote.ip.allowlist": []
                 }
               },
@@ -615,7 +615,7 @@
               "minLength": 7,
               "maxLength": 15,
               "x-42c-format": "o:ipv4",
-              "example": "192.168.9.1"
+              "example": "192.168.16.1"
             },
             "name": "ipAddress",
             "in": "path",
