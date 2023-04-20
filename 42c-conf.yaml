@@ -16,7 +16,14 @@
 
 audit:
   branches:
-    "**":
+    main:
+      discovery:
+        search:
+          - './OASFiles/**/*.json'
+          - '!./OASFiles/Reference/**'
+
+  prs:
+    main:
       discovery:
         search:
           - './OASFiles/**/*.json'
