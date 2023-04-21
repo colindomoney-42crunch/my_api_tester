@@ -416,3 +416,4 @@ api.get('/api/admin/all_users', api_token_check, function (req, res) {
 	})
 });
 
+global.API_KEY = "d318adf3-dd81-4c25-8b28-8df3feb0b9f0";
