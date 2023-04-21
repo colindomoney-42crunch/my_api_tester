@@ -14,7 +14,7 @@
   },
   "servers": [
     {
-      "url": "https://ayepeye.ngrok.app/api"
+      "url": "http://ayepeye.ngrok.app/api"
     }
   ],
   "tags": [
