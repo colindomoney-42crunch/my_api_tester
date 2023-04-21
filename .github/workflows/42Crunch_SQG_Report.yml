@@ -1,0 +1,79 @@
+name: 42Crunch SQG Report
+
+on: pull_request
+
+jobs:
+  example_comment_pr:
+    runs-on: ubuntu-latest
+    name: 42Crunch Summary
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10.9'
+
+      - name: install python packages
+        run: |
+          python3 -m pip install --upgrade pip
+          pip3 install --user -Iv requests==2.28.1
+          pip3 install pyyaml
+          pip3 install python-decouple
+          pip install tabulate
+          pip install fontstyle
+
+      - name: execute py script
+        run: python3 Audit/getReport.py github ${{ secrets.API_TOKEN }}
+
+      - name: Commit files
+        run: |
+          git config --global user.email "heshaam.attar@42crunch.com"
+          git config --global user.name "heshaam-42c"
+          git config --local user.name  ${{ github.actor }}
+          git add ./Audit/report.rtf
+          git commit -m "Updating the repository GitHub audit report.rtf"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          force: true
+
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: Audit/report.rtf
+          reactions: eyes
+
+  # update-pr-status:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - name: Set PR Status to pending
+  #     uses: teamniteo/pull_request_status_action@v1.0.0
+  #     with:
+  #       # Pull Request number (Mandatory)
+  #       pr_number: ${{ github.event.number }}
+
+  #       # State to apply (Mandatory)
+  #       # Any of the (error | failure | pending | success) states
+  #       state: pending
+
+  #       # Name of the repository in {organization}/{repo_name} format (Mandatory)
+  #       repository: heshaam-42c/lab
+
+  #       # Name to identify the Status (Optional)
+  #       # Defaults to `default`
+  #       context: default
+
+  #       # The target URL to associate with the Status (Optional)
+  #       # This URL will be linked from the Github UI to allow users to easily see the source of the status.
+  #       target_url: https://demolabs.42crunch.cloud
+
+  #       # A short description of the status (Optional)
+  #       description: "42Crunch Audit Check"
+
+  #     env:
+  #       # Default Github Token
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
