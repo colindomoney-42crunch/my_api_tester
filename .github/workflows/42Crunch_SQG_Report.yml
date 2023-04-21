@@ -1,6 +1,8 @@
 name: 42Crunch SQG Report
 
-on: pull_request
+on: 
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   example_comment_pr:
