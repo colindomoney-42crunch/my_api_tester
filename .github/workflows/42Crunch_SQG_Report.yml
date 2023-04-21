@@ -27,14 +27,14 @@ jobs:
           pip install fontstyle
 
       - name: execute py script
-        run: python3 ./42C/getReport.py github ${{ secrets.API_TOKEN }}
+        run: python3 .42C/getReport.py github ${{ secrets.API_TOKEN }}
 
       - name: Commit files
         run: |
           git config --global user.email "colin.domoney@42crunch.com"
           git config --global user.name "colindomoney-42crunch"
           git config --local user.name  ${{ github.actor }}
-          git add ./.42C/report.rtf
+          git add .42C/report.rtf
           git commit -m "Updating the repository GitHub audit report.rtf"
 
       - name: Push changes
@@ -46,6 +46,6 @@ jobs:
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v2
         with:
-          filePath: ./42C/report.rtf
+          filePath: .42C/report.rtf
           reactions: eyes
 
