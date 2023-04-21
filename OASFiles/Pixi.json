@@ -602,6 +602,28 @@
         },
         "operationId": "deletePicture"
       }
+    },
+    "/admin/ping/{ipAddress}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "ipAddress",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "access-token": []
+          }
+        ]
+      }
     }
   },
   "components": {
